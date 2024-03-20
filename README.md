@@ -1,3 +1,14 @@
+# ToDo:
+ - Setup Material UI CSS Framework
+ - Create simple dims form to input L x W x H and checkbox on if >300lbs
+ - Write logic to handle math / decision making
+ - Create component to display output
+ - Create add on form to add additional 2x4s to brace inside of crate
+ - Updated Board Feet based on any additional 2x4s
+ - Style it to be reactive to whatever device app is open on.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
