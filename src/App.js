@@ -1,15 +1,15 @@
 import './App.css';
-import Dims_Form from './components/dims_form';
-import Crate_Output from './components/crate_output';
+import DimsForm from './components/dims_form';
+import CrateOutput from './components/crate_output';
 
 function App() {
   return (
     <div className="App">
       This is the Crate Builder!
 
-      <Dims_Form />
+      <DimsForm />
 
-      <Crate_Output />
+      <CrateOutput />
     </div>
   );
 }
