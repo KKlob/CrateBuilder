@@ -8,6 +8,11 @@
  - Style it to be reactive to whatever device app is open on.
 
 
+ # Current State
+  - Base Formik form submits to console.
+  - Need to setup UI for dims input (main number | Fraction top | Fraction bot)
+
+
 
 # Getting Started with Create React App
 
