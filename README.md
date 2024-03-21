@@ -1,5 +1,5 @@
 # ToDo:
- - Setup React Bootstrap framework
+ - Setup Material UI + Formik + yup validation
  - Create simple dims form to input L x W x H and checkbox on if >300lbs
  - Write logic to handle math / decision making
  - Create component to display output
