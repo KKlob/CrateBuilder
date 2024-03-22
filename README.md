@@ -1,5 +1,4 @@
 # ToDo:
- - Material UI for Styling, Formik to handle forms, Yup for form validation
  - Create simple dims form to input L x W x H and checkbox on if >300lbs
  - Write logic to handle math / decision making
  - Create component to display output
@@ -10,7 +9,9 @@
 
  # Current State
   - Base Formik form submits to console.
-  - Need to setup UI for dims input (main number | Fraction top | Fraction bot)
+  - Base format for UI setup with basic reactive styling.
+  - Need to write basic validation via Yup before form submission
+  - Need to write logic for handling dims submit
 
 
 
