@@ -10,8 +10,7 @@
  # Current State
   - Base Formik form submits to console.
   - Base format for UI setup with basic reactive styling.
-  - Need to write basic validation via Yup before form submission
-  - Need to write logic for handling dims submit
+  - Write logic to transform dimsform values to fractions and do necessary calcs.
 
 
 

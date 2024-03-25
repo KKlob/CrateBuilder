@@ -2,23 +2,27 @@ import { Box, Grid, TextField, Table, TableHead, TableBody, TableRow, TableCell,
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import { Container } from "react-bootstrap";
+import * as Yup from 'yup';
 
-function DimsForm() {
+function DimsForm({ dims, setDims }) {
+
+    const DimsSchema = Yup.object().shape({
+        lm: Yup.number().required('Required').min(1, "Needs to be greater than 0"),
+        lt: Yup.number(),
+        lb: Yup.number(),
+        wm: Yup.number().required('Required').min(1, "Needs to be greater than 0"),
+        wt: Yup.number(),
+        wb: Yup.number(),
+        hm: Yup.number().required('Required').min(1, "Needs to be greater than 0"),
+        ht: Yup.number(),
+        hb: Yup.number()
+    });
+
     const formik = useFormik({
-        initialValues: {
-            lm: '',
-            lt: '',
-            lb: '',
-            wm: '',
-            wt: '',
-            wb: '',
-            hm: '',
-            ht: '',
-            hb: '',
-            weight: false
-        },
+        initialValues: dims,
+        validationSchema: DimsSchema,
         onSubmit: values => {
-            console.log(values);
+            setDims(values);
         },
     });
 
@@ -39,12 +43,12 @@ function DimsForm() {
                                 <TableBody>
                                     <TableRow>
                                         <TableCell align="right">
-                                            <TextField id="lm" name="lm" label="Length_Main" value={formik.values.lm} onChange={formik.handleChange} />
+                                            <TextField id="lm" name="lm" value={formik.values.lm} onChange={formik.handleChange} />
                                         </TableCell>
                                         <TableCell align="left">
                                             <Stack spacing={0}>
-                                                <TextField id="lt" name="lt" label="Length_Top" sx={{ borderBottom: "1px solid black" }} value={formik.values.lt} onChange={formik.handleChange} />
-                                                <TextField id="lb" name="lb" label="Length_Bot" sx={{ borderTop: "1px solid black" }} value={formik.values.lb} onChange={formik.handleChange} />
+                                                <TextField id="lt" name="lt" sx={{ borderBottom: "1px solid black" }} value={formik.values.lt} onChange={formik.handleChange} />
+                                                <TextField id="lb" name="lb" sx={{ borderTop: "1px solid black" }} value={formik.values.lb} onChange={formik.handleChange} />
                                             </Stack>
                                         </TableCell>
                                     </TableRow>
@@ -65,12 +69,12 @@ function DimsForm() {
                                 <TableBody>
                                     <TableRow>
                                         <TableCell align="right">
-                                            <TextField id="wm" name="wm" label="Width_Main" value={formik.values.wm} onChange={formik.handleChange} />
+                                            <TextField id="wm" name="wm" value={formik.values.wm} onChange={formik.handleChange} />
                                         </TableCell>
                                         <TableCell align="left">
                                             <Stack spacing={0}>
-                                                <TextField id="wt" name="wt" label="Width_Top" sx={{ borderBottom: "1px solid black" }} value={formik.values.wt} onChange={formik.handleChange} />
-                                                <TextField id="wb" name="wb" label="Width_Bot" sx={{ borderTop: "1px solid black" }} value={formik.values.wb} onChange={formik.handleChange} />
+                                                <TextField id="wt" name="wt" sx={{ borderBottom: "1px solid black" }} value={formik.values.wt} onChange={formik.handleChange} />
+                                                <TextField id="wb" name="wb" sx={{ borderTop: "1px solid black" }} value={formik.values.wb} onChange={formik.handleChange} />
                                             </Stack>
                                         </TableCell>
                                     </TableRow>
@@ -91,12 +95,12 @@ function DimsForm() {
                                 <TableBody>
                                     <TableRow>
                                         <TableCell align="right">
-                                            <TextField id="hm" name="hm" label="Height_Main" value={formik.values.hm} onChange={formik.handleChange} />
+                                            <TextField id="hm" name="hm" value={formik.values.hm} onChange={formik.handleChange} />
                                         </TableCell>
                                         <TableCell align="left">
                                             <Stack spacing={0}>
-                                                <TextField id="ht" name="ht" label="Height_Top" sx={{ borderBottom: "1px solid black" }} value={formik.values.ht} onChange={formik.handleChange} />
-                                                <TextField id="hb" name="hb" label="Height_Bot" sx={{ borderTop: "1px solid black" }} value={formik.values.hb} onChange={formik.handleChange} />
+                                                <TextField id="ht" name="ht" sx={{ borderBottom: "1px solid black" }} value={formik.values.ht} onChange={formik.handleChange} />
+                                                <TextField id="hb" name="hb" sx={{ borderTop: "1px solid black" }} value={formik.values.hb} onChange={formik.handleChange} />
                                             </Stack>
                                         </TableCell>
                                     </TableRow>
@@ -107,6 +111,7 @@ function DimsForm() {
                 </Grid>
                 <Box>
                     <Checkbox id="weight" name="weight" label="Weight over 300 lbs?" value={formik.values.weight} onChange={formik.handleChange} />
+                    Total Weight over 300 lbs?
                 </Box>
                 <Box>
                     <Button type="submit">Submit</Button>
