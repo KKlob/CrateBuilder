@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/CrateBuilder/static/css/main.f855e6bc.css",
-    "main.js": "/CrateBuilder/static/js/main.45f46866.js",
+    "main.js": "/CrateBuilder/static/js/main.27aa6b7c.js",
     "static/js/453.6f37ef21.chunk.js": "/CrateBuilder/static/js/453.6f37ef21.chunk.js",
     "index.html": "/CrateBuilder/index.html",
     "main.f855e6bc.css.map": "/CrateBuilder/static/css/main.f855e6bc.css.map",
-    "main.45f46866.js.map": "/CrateBuilder/static/js/main.45f46866.js.map",
+    "main.27aa6b7c.js.map": "/CrateBuilder/static/js/main.27aa6b7c.js.map",
     "453.6f37ef21.chunk.js.map": "/CrateBuilder/static/js/453.6f37ef21.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.45f46866.js"
+    "static/js/main.27aa6b7c.js"
   ]
 }
