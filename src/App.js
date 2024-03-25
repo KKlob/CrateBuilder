@@ -6,15 +6,15 @@ import { useState } from 'react';
 
 function App() {
   const [dims, setDims] = useState({
-    lm: 0,
-    lt: 0,
-    lb: 0,
-    wm: 0,
-    wt: 0,
-    wb: 0,
-    hm: 0,
-    ht: 0,
-    hb: 0,
+    lm: 35,
+    lt: 1,
+    lb: 4,
+    wm: 20,
+    wt: 3,
+    wb: 8,
+    hm: 15,
+    ht: 3,
+    hb: 16,
     weight: false
   });
 

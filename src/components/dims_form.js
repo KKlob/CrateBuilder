@@ -114,7 +114,7 @@ function DimsForm({ dims, setDims }) {
                     Total Weight over 300 lbs?
                 </Box>
                 <Box>
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit" variant="outlined">Submit</Button>
                 </Box>
             </form >
         </div >
