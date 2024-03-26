@@ -1,8 +1,9 @@
 import './App.css';
 import DimsForm from './components/dims_form';
 import CrateOutput from './components/crate_output';
-import { Grid, Container } from '@mui/material';
+import { Grid, Container, Divider } from '@mui/material';
 import { useState } from 'react';
+import AddTwoByFoursForm from './components/add_two_by_fours';
 
 function App() {
   const [dims, setDims] = useState({
@@ -28,6 +29,9 @@ function App() {
           </Grid>
           <Grid item xs={12}>
             <CrateOutput dims={dims} />
+          </Grid>
+          <Grid item xs={12}>
+            <AddTwoByFoursForm />
           </Grid>
         </Grid>
       </Container>
