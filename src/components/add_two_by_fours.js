@@ -1,60 +1,73 @@
 import { Button, Table, TableCell, TableHead, TableRow, TableBody } from "@mui/material";
-import { useState } from "react";
 import TwoByFourRow from "./twoByRow";
 import Fraction from 'fraction.js';
+import { useFormik } from "formik";
+import { useState } from "react";
 
-function AddTwoByFoursForm({ updateTwoBysTotal }) {
+function AddTwoByFoursForm() {
 
-    const [twoBys, updateTwoBys] = useState({});
+    const [rows, setRows] = useState({});
 
-    const baseRow = { qty: 0, length: 0 }
+    const formik = useFormik({
+        initialValues: {},
+        onSubmit: values => {
+            console.log(values);
+        }
+    });
 
-    function handleAddRow() {
-        const nextKey = Object.keys(twoBys).length + 1
-        twoBys[nextKey] = baseRow
-        updateTwoBys({ ...twoBys });
+    function addRow() {
+        const baseRow = { qty: 0, length: 0 }
+        const rowID = Object.keys(rows).length + 1;
+        rows[rowID] = baseRow;
+        setRows({ ...rows });
+    }
+
+    function updateRow(rowID, key, value) {
+        if (key == "qty") {
+            const length = rows[rowID].length;
+            setRows({ ...rows, [rowID]: { qty: value, length: length } })
+        } else {
+            const qty = rows[rowID].qty;
+            setRows({ ...rows, [rowID]: { qty: qty, length: value } })
+        }
+    }
+
+    function handleSubmit() {
+        formik.setValues({ ...rows });
+        formik.handleSubmit();
     }
 
     function clearRows() {
-        updateTwoBys({});
-    }
-
-    function updateBF() {
-        let total = 0;
-
-        Object.values(twoBys).map(row => {
-            const lenFrac = new Fraction(row.length);
-            const rowTotal = lenFrac.mul(row.qty);
-            total = total + rowTotal;
-        });
-
-        console.log(total);
+        formik.setValues({});
+        setRows({});
     }
 
     return (
         <div id="add_two_by_fours_form">
-            <Table id="twobys">
-                <TableHead>
-                    <TableRow>
-                        <TableCell colSpan={3} align="center">
-                            Add Additional 2x4s below
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Qty</TableCell>
-                        <TableCell>Length</TableCell>
-                        <TableCell>Total Length</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {Object.entries(twoBys).map(row => <TwoByFourRow key={crypto.randomUUID()} twoBys={twoBys} updateTwoBys={updateTwoBys} rowID={row[0]} />)}
-                    <TableRow>
-                        <TableCell><Button onClick={handleAddRow}>Add 2x4</Button></TableCell>
-                        <TableCell><Button onClick={updateBF}>Update</Button></TableCell>
-                        <TableCell><Button onClick={clearRows}>Clear 2x4s</Button></TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
+            <form onSubmit={formik.handleSubmit}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell colSpan={3} align="center">
+                                Add Additional 2x4s below
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Qty</TableCell>
+                            <TableCell>Length</TableCell>
+                            <TableCell>Total Length</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {Object.keys(rows).map(rowID => <TwoByFourRow key={crypto.randomUUID()} rowID={rowID} qty={rows[rowID].qty} length={rows[rowID].length} updateRow={updateRow} />)}
+                        <TableRow>
+                            <TableCell><Button onClick={addRow}>Add 2x4</Button></TableCell>
+                            <TableCell><Button onClick={handleSubmit}>Update</Button></TableCell>
+                            <TableCell><Button onClick={clearRows}>Clear 2x4s</Button></TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </form>
         </div>
     )
 }
