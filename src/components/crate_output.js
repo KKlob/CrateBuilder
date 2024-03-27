@@ -15,6 +15,11 @@ function CrateOutput({ dims }) {
 
     const topLength = (length).add(new Fraction(5, 4));
 
+    function getBoardFeet() {
+        const bf = TwoByFours.multiply(dims.weight ? 6 : 3).multiply(2).multiply(4).divide(144)
+        return (Number(bf.numerator / bf.denominator).toFixed(2));
+    }
+
     return (
         <div id="CrateOutput">
             <Table>
@@ -53,6 +58,9 @@ function CrateOutput({ dims }) {
                         <TableCell>Top</TableCell>
                         <TableCell>{topLength.toString()} x {TwoByFours.toString()}</TableCell>
                         <TableCell>1</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell colSpan={3} align="center">Board Feet: {getBoardFeet()}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

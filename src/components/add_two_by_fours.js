@@ -14,6 +14,10 @@ function AddTwoByFoursForm() {
         updateTwoBys([...twoBys, { qty: 0, length: 0 }]);
     }
 
+    function clearRows() {
+        updateTwoBys([]);
+    }
+
     function updateBF() {
 
     }
@@ -38,7 +42,7 @@ function AddTwoByFoursForm() {
                     <TableRow>
                         <TableCell><Button onClick={handleAddRow}>Add 2x4</Button></TableCell>
                         <TableCell><Button onClick={updateBF}>Update</Button></TableCell>
-                        <TableCell><Button>Clear 2x4s</Button></TableCell>
+                        <TableCell><Button onClick={clearRows}>Clear 2x4s</Button></TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
