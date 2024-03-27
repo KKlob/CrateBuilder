@@ -110,8 +110,8 @@ function DimsForm({ dims, setDims }) {
                     </Grid>
                 </Grid>
                 <Box>
-                    <Checkbox id="weight" name="weight" label="Weight over 300 lbs?" value={formik.values.weight} onChange={formik.handleChange} />
-                    Total Weight over 300 lbs?
+                    <Checkbox id="weight" name="weight" label="Add additional 2x4s for support?" value={formik.values.weight} onChange={formik.handleChange} />
+                    Add additional 2x4s for support?
                 </Box>
                 <Box>
                     <Button type="submit" variant="outlined">Submit</Button>

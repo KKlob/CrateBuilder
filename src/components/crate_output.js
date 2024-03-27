@@ -1,7 +1,7 @@
 import { Table, TableBody, TableRow, TableCell } from "@mui/material";
 import { Fraction } from "fractional";
 
-function CrateOutput({ dims }) {
+function CrateOutput({ dims, addTwoBys }) {
 
     const length = new Fraction((dims.lm * dims.lb) + dims.lt, dims.lb);
     const width = new Fraction((dims.wm * dims.wb) + dims.wt, dims.wb);
@@ -16,7 +16,7 @@ function CrateOutput({ dims }) {
     const topLength = (length).add(new Fraction(5, 4));
 
     function getBoardFeet() {
-        const bf = TwoByFours.multiply(dims.weight ? 6 : 3).multiply(2).multiply(4).divide(144)
+        const bf = TwoByFours.multiply(dims.weight ? 6 : 3).add(addTwoBys).multiply(2).multiply(4).divide(144)
         return (Number(bf.numerator / bf.denominator).toFixed(2));
     }
 

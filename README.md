@@ -11,9 +11,7 @@
   - Base Formik form submits to console.
   - Base format for UI setup with basic reactive styling.
   - Write logic to transform dimsform values to fractions and do necessary calcs.
-    - need to calc board feet and display
-  - Add additional form to allow additional 2x4s to be add
-    - two inputs per line, 1 for length and 1 for qty
+    - Write logic to handle 2x4s form
 
 
 

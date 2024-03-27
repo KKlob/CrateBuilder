@@ -1,25 +1,34 @@
-import { Button, Table, TableCell, TableHead, TableRow, TableBody, TextField } from "@mui/material";
-import { Tab } from "react-bootstrap";
+import { Button, Table, TableCell, TableHead, TableRow, TableBody } from "@mui/material";
 import { useState } from "react";
 import TwoByFourRow from "./twoByRow";
+import Fraction from 'fraction.js';
 
-function AddTwoByFoursForm() {
+function AddTwoByFoursForm({ updateTwoBysTotal }) {
 
-    const [twoBys, updateTwoBys] = useState([]);
+    const [twoBys, updateTwoBys] = useState({});
 
-    console.log(twoBys);
+    const baseRow = { qty: 0, length: 0 }
 
     function handleAddRow() {
-        console.log("adding row");
-        updateTwoBys([...twoBys, { qty: 0, length: 0 }]);
+        const nextKey = Object.keys(twoBys).length + 1
+        twoBys[nextKey] = baseRow
+        updateTwoBys({ ...twoBys });
     }
 
     function clearRows() {
-        updateTwoBys([]);
+        updateTwoBys({});
     }
 
     function updateBF() {
+        let total = 0;
 
+        Object.values(twoBys).map(row => {
+            const lenFrac = new Fraction(row.length);
+            const rowTotal = lenFrac.mul(row.qty);
+            total = total + rowTotal;
+        });
+
+        console.log(total);
     }
 
     return (
@@ -38,7 +47,7 @@ function AddTwoByFoursForm() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {twoBys.map(row => <TwoByFourRow key={crypto.randomUUID()} qty={row.qty} length={row.length} />)}
+                    {Object.entries(twoBys).map(row => <TwoByFourRow key={crypto.randomUUID()} twoBys={twoBys} updateTwoBys={updateTwoBys} rowID={row[0]} />)}
                     <TableRow>
                         <TableCell><Button onClick={handleAddRow}>Add 2x4</Button></TableCell>
                         <TableCell><Button onClick={updateBF}>Update</Button></TableCell>
