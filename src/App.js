@@ -22,13 +22,29 @@ function App() {
     twoBy5: { qty: "", length: "" }
   });
 
+  function handleReset() {
+    setDims({
+      length: "",
+      width: "",
+      height: "",
+      addFeet: false
+    });
+    setTwoBys({
+      twoBy1: { qty: "", length: "" },
+      twoBy2: { qty: "", length: "" },
+      twoBy3: { qty: "", length: "" },
+      twoBy4: { qty: "", length: "" },
+      twoBy5: { qty: "", length: "" }
+    });
+  }
+
   return (
     <div className="App">
       <Container>
         This is the Crate Builder!
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <DimsForm dims={dims} setDims={setDims} />
+            <DimsForm dims={dims} setDims={setDims} handleReset={handleReset} />
           </Grid>
           <Grid item xs={12}>
             <CrateOutput dims={dims} twoBys={twoBys} />

@@ -12,6 +12,13 @@ function TwoByFoursForm({ twoBys, setTwoBys }) {
 
     function handleClear() {
         formik.resetForm();
+        setTwoBys({
+            twoBy1: { qty: "", length: "" },
+            twoBy2: { qty: "", length: "" },
+            twoBy3: { qty: "", length: "" },
+            twoBy4: { qty: "", length: "" },
+            twoBy5: { qty: "", length: "" }
+        });
     }
 
     return (
@@ -26,6 +33,10 @@ function TwoByFoursForm({ twoBys, setTwoBys }) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
+                                <TableRow>
+                                    <TableCell align="center">Qty</TableCell>
+                                    <TableCell align="center">Length</TableCell>
+                                </TableRow>
                                 <TableRow>
                                     <TableCell align="center"><TextField name="twoBy1.qty" value={formik.values.twoBy1.qty} onChange={formik.handleChange} /></TableCell>
                                     <TableCell align="center"><TextField name="twoBy1.length" value={formik.values.twoBy1.length} onChange={formik.handleChange} /></TableCell>

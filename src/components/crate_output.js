@@ -17,12 +17,39 @@ function CrateOutput({ dims, twoBys }) {
     }
 
     let CrateDims = { feet: "", base: "", fb: "", sides: "", top: "" }
+    let feetLength = new Fraction("0");
+
     if (dims.length !== "" && dims.width !== "" && dims.height !== "") {
         length = new Fraction(dims.length);
         width = new Fraction(dims.width);
         height = new Fraction(dims.height);
 
         CrateDims = CalcCrateDims(length, width, height);
+
+
+        if (dims.addFeet) {
+            feetLength = new Fraction(CrateDims.feet).mul(6)
+        } else {
+            feetLength = new Fraction(CrateDims.feet).mul(3)
+        }
+
+    }
+
+    function CalcBoardFeet(feet, twoBys) {
+        let twoBysLength = new Fraction("0");
+
+        Object.values(twoBys).map(row => {
+            if (row.qty !== "" && row.length !== "") {
+                let currentRow = new Fraction(row.length).mul(row.qty);
+                twoBysLength = twoBysLength.add(currentRow.toFraction());
+            }
+        })
+
+        let totalLength = feet.add(twoBysLength);
+
+        let bf = totalLength.mul(2).mul(4).div(144);
+
+        return Number(bf.valueOf()).toFixed(2);
     }
 
     return (
@@ -55,7 +82,7 @@ function CrateOutput({ dims, twoBys }) {
                         <TableCell>1</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell colSpan={3} align="center">Board Feet: { }</TableCell>
+                        <TableCell colSpan={3} align="center">Board Feet: {CalcBoardFeet(feetLength, twoBys)}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

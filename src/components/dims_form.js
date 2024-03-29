@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 
-function DimsForm({ dims, setDims }) {
+function DimsForm({ dims, setDims, handleReset }) {
 
     const DimsSchema = Yup.object().shape({
         length: Yup.string()
@@ -48,7 +48,9 @@ function DimsForm({ dims, setDims }) {
                                     <TableCell colSpan={3} align="center"><Checkbox name="addFeet" value={formik.values.addFeet} onChange={formik.handleChange} />Add additional 2x4s for support?</TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell colSpan={3} align="center"><Button type="submit">Submit</Button></TableCell>
+                                    <TableCell align="center"><Button type="submit">Submit</Button></TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell align="center"><Button onClick={handleReset}>Reset Form</Button></TableCell>
                                 </TableRow>
                             </TableBody>
                         </Table>
