@@ -8,11 +8,11 @@
 
 
  # Current State
-  - Base Formik form submits to console.
-  - Base format for UI setup with basic reactive styling.
-  - Write logic to transform dimsform values to fractions and do necessary calcs.
-    - Write logic to handle 2x4s form
-    - Finish adding addtional 2x4s to display / board ft calc
+  - Base app is finished.
+  - No real checks on input data
+    - Sanitize inputs to ensure Fractions are input properly
+    - Need to add logic for slim crates that need only 2 feet nudged towards center + no additional 3" on side heights
+    - Refresh page to reset form easy
 
 
 
