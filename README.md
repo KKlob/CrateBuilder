@@ -12,7 +12,7 @@
   - Base format for UI setup with basic reactive styling.
   - Write logic to transform dimsform values to fractions and do necessary calcs.
     - Write logic to handle 2x4s form
-    - Simplify form. Give 5 lines of input for additional 2x4s or make 2nd full form just for 2x4s and run board ft calc with both Main form submit and 2x4 form submit
+    - Finish adding addtional 2x4s to display / board ft calc
 
 
 

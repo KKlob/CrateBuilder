@@ -1,39 +1,29 @@
 import { Grid, TextField, Table, TableHead, TableBody, TableRow, TableCell, Checkbox } from "@mui/material";
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
-import Fraction from 'fraction.js';
-import { useState } from "react";
-import TwoByFourRow from "./twoByRow";
+import * as Yup from 'yup';
 
-function DimsForm() {
+function DimsForm({ dims, setDims }) {
+
+    const DimsSchema = Yup.object().shape({
+        length: Yup.string()
+            .min(1, "Need an input")
+            .required("required"),
+        width: Yup.string()
+            .min(1, "Need an input")
+            .required("required"),
+        height: Yup.string()
+            .min(1, "Need an input")
+            .required("required"),
+    })
 
     const formik = useFormik({
-        initialValues: {
-            length: "",
-            width: "",
-            height: "",
-            addFeet: false,
-            twoBysQty: [],
-            twoBysLen: [],
-        },
+        initialValues: dims,
+        validationSchema: DimsSchema,
         onSubmit: values => {
-            console.log(values);
+            setDims(values);
         },
     });
-
-    const [twoBys, setTwoBys] = useState([]);
-
-    function handleAddRow() {
-        formik.values.twoBysQty = [...formik.values.twoBysQty, "0"]
-        formik.values.twoBysLen = [...formik.values.twoBysLen, "0"]
-        setTwoBys([...twoBys, "row"])
-    }
-
-    function handleClearRows() {
-        formik.values.twoBysQty = [];
-        formik.values.twoBysLen = [];
-        setTwoBys([]);
-    }
 
     return (
         <div id="DimsForm">
@@ -56,20 +46,6 @@ function DimsForm() {
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3} align="center"><Checkbox name="addFeet" value={formik.values.addFeet} onChange={formik.handleChange} />Add additional 2x4s for support?</TableCell>
-                                </TableRow>
-                                {twoBys.map((value, ind) => {
-                                    return (
-                                        <TableRow key={crypto.randomUUID()}>
-                                            <TableCell><TextField name={"twoBysQty[".concat(ind).concat("]")} value={formik.values.twoBysQty[ind]} onChange={formik.handleChange}></TextField></TableCell>
-                                            <TableCell><TextField name={"twoBysLen[".concat(ind).concat("]")} value={formik.values.twoBysLen[ind]} onChange={formik.handleChange}></TextField></TableCell>
-                                            <TableCell>placeholder</TableCell>
-                                        </TableRow>
-                                    )
-                                })}
-                                <TableRow>
-                                    <TableCell align="center"><Button onClick={handleAddRow}>Add 2x4</Button></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell align="center"><Button onClick={handleClearRows}>Clear 2x4s</Button></TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={3} align="center"><Button type="submit">Submit</Button></TableCell>

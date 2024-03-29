@@ -1,23 +1,28 @@
 import { Table, TableBody, TableRow, TableCell } from "@mui/material";
-import { Fraction } from "fractional";
+import Fraction from 'fraction.js';
 
-function CrateOutput({ dims, addTwoBys }) {
+function CrateOutput({ dims, twoBys }) {
 
-    const length = new Fraction((dims.lm * dims.lb) + dims.lt, dims.lb);
-    const width = new Fraction((dims.wm * dims.wb) + dims.wt, dims.wb);
-    const height = new Fraction((dims.hm * dims.hb) + dims.ht, dims.hb);
+    let length;
+    let width;
+    let height;
 
-    const TwoByFours = (width).add(new Fraction(5, 4));
+    function CalcCrateDims(length, width, height) {
+        const feet = width.add("1 1/4");
+        const base = length.toFraction(true).concat(" x ").concat(width.toFraction(true));
+        const fb = length.toFraction(true).concat(" x ").concat(height.add("5/8").toFraction(true));
+        const sides = feet.toFraction(true).concat(" x ").concat(height.add("3 5/8").toFraction(true));
+        const top = length.add("1 1/4").toFraction(true).concat(" x ").concat(feet.toFraction(true));
+        return { feet: feet.toFraction(true), base, fb, sides, top }
+    }
 
-    const crateHeight = (height).add(new Fraction(5, 8));
+    let CrateDims = { feet: "", base: "", fb: "", sides: "", top: "" }
+    if (dims.length !== "" && dims.width !== "" && dims.height !== "") {
+        length = new Fraction(dims.length);
+        width = new Fraction(dims.width);
+        height = new Fraction(dims.height);
 
-    const crateSidesHeight = (crateHeight).add(3);
-
-    const topLength = (length).add(new Fraction(5, 4));
-
-    function getBoardFeet() {
-        const bf = TwoByFours.multiply(dims.weight ? 6 : 3).add(addTwoBys).multiply(2).multiply(4).divide(144)
-        return (Number(bf.numerator / bf.denominator).toFixed(2));
+        CrateDims = CalcCrateDims(length, width, height);
     }
 
     return (
@@ -25,42 +30,32 @@ function CrateOutput({ dims, addTwoBys }) {
             <Table>
                 <TableBody>
                     <TableRow>
-                        <TableCell align="center">Legnth: {length.toString()}</TableCell>
-                        <TableCell align="center">Width: {width.toString()}</TableCell>
-                        <TableCell align="center">Height: {height.toString()}</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-
-            <Table>
-                <TableBody>
-                    <TableRow>
                         <TableCell>2x4s</TableCell>
-                        <TableCell>{TwoByFours.toString()}</TableCell>
-                        <TableCell>{dims.weight ? "6" : "3"}</TableCell>
+                        <TableCell>{CrateDims.feet}</TableCell>
+                        <TableCell>{dims.addFeet ? 6 : 3}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Base</TableCell>
-                        <TableCell>{length.toString()} x {width.toString()}</TableCell>
+                        <TableCell>{CrateDims.base}</TableCell>
                         <TableCell>1</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Front/Back</TableCell>
-                        <TableCell>{length.toString()} x {crateHeight.toString()}</TableCell>
+                        <TableCell>{CrateDims.fb}</TableCell>
                         <TableCell>2</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Sides</TableCell>
-                        <TableCell>{TwoByFours.toString()} x {crateSidesHeight.toString()}</TableCell>
+                        <TableCell>{CrateDims.sides}</TableCell>
                         <TableCell>2</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Top</TableCell>
-                        <TableCell>{topLength.toString()} x {TwoByFours.toString()}</TableCell>
+                        <TableCell>{CrateDims.top}</TableCell>
                         <TableCell>1</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell colSpan={3} align="center">Board Feet: {getBoardFeet()}</TableCell>
+                        <TableCell colSpan={3} align="center">Board Feet: { }</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
