@@ -38,7 +38,7 @@ function CrateOutput({ dims, twoBys }) {
     function CalcBoardFeet(feet, twoBys) {
         let twoBysLength = new Fraction("0");
 
-        Object.values(twoBys).map(row => {
+        Object.values(twoBys).forEach(row => {
             if (row.qty !== "" && row.length !== "") {
                 let currentRow = new Fraction(row.length).mul(row.qty);
                 twoBysLength = twoBysLength.add(currentRow.toFraction());
