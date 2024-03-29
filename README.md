@@ -12,7 +12,7 @@
   - Base format for UI setup with basic reactive styling.
   - Write logic to transform dimsform values to fractions and do necessary calcs.
     - Write logic to handle 2x4s form
-    - Currently things work but every time you change a 2x4 form text field it re-renders the entire form causing focus to be lost. must be fixed
+    - Simplify form. Give 5 lines of input for additional 2x4s or make 2nd full form just for 2x4s and run board ft calc with both Main form submit and 2x4 form submit
 
 
 
