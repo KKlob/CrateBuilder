@@ -19,7 +19,7 @@
     - main page - dims page and display
     - second page - add 2x4s page with new board feet
   - Perform Object-oriented programing
-    - a crate is an object
+    - a crate is an object - DONE - Need to restructure app to account for Crate object
     - clear crate when reseting app    
 
 # Getting Started with Create React App

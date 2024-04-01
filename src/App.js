@@ -4,8 +4,12 @@ import DimsForm from './components/dims_form';
 import TwoByFoursForm from './components/two_by_fours_form';
 import { useState } from 'react';
 import CrateOutput from './components/crate_output';
+import Crate from './objects/crate';
 
 function App() {
+
+  let test = new Crate("30.1/4", "25.1/8", "15.3/16",);
+  console.log(test.getInfo);
 
   const [dims, setDims] = useState({
     length: "",
