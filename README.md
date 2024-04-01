@@ -14,7 +14,13 @@
     - Write logic to handle 2x4s form
     - Finish adding addtional 2x4s to display / board ft calc
 
-
+ # New Goals
+  - Refactor app to be cleaner
+    - main page - dims page and display
+    - second page - add 2x4s page with new board feet
+  - Perform Object-oriented programing
+    - a crate is an object
+    - clear crate when reseting app    
 
 # Getting Started with Create React App
 
