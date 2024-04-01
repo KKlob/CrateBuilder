@@ -8,20 +8,21 @@
 
 
  # Current State
-  - Calcs all basic crate things.
-  - Calc new crate for each base submission.
-  - Can add additional 2x4s with one form submission.
-  - Reset via refresh
-  - CANNOT
-    - clear forms on it's own
-    - add additional 2x4s to a crate more than once. Additional submits will not update board ft.
+  - Base app is finished.
+  - No real checks on input data
+    - Sanitize inputs to ensure Fractions are input properly
+    - Need to add logic for slim crates that need only 2 feet nudged towards center + no additional 3" on side heights
+    - Refresh page to reset form easy
 
  # New Goals
   - Refactor app to be cleaner
-    - To be done at a later date
+    - main page - dims page and display
+    - second page - add 2x4s page with new board feet
   - Perform Object-oriented programing
-    - a crate is an object - DONE 
-    - Need to restructure app to account for Crate object - DONE  
+    - a crate is an object
+    - clear crate when reseting app    
+
+
 
 # Getting Started with Create React App
 

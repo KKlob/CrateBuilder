@@ -2,8 +2,9 @@ import { Grid, TextField, Table, TableHead, TableBody, TableRow, TableCell, Chec
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import Crate from "../objects/crate";
 
-function DimsForm({ dims, setDims, handleReset }) {
+function DimsForm({ setCrate }) {
 
     const DimsSchema = Yup.object().shape({
         length: Yup.string()
@@ -18,10 +19,15 @@ function DimsForm({ dims, setDims, handleReset }) {
     })
 
     const formik = useFormik({
-        initialValues: dims,
+        initialValues: {
+            length: "",
+            width: "",
+            height: "",
+            addFeet: false,
+        },
         validationSchema: DimsSchema,
         onSubmit: values => {
-            setDims(values);
+            setCrate(new Crate(values.length, values.width, values.height, values.addFeet));
         },
     });
 
@@ -48,9 +54,7 @@ function DimsForm({ dims, setDims, handleReset }) {
                                     <TableCell colSpan={3} align="center"><Checkbox name="addFeet" value={formik.values.addFeet} onChange={formik.handleChange} />Add additional 2x4s for support?</TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell align="center"><Button type="submit">Submit</Button></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell align="center"><Button onClick={handleReset}>Reset Form</Button></TableCell>
+                                    <TableCell align="center" colSpan={3}><Button type="submit">Submit</Button></TableCell>
                                 </TableRow>
                             </TableBody>
                         </Table>
