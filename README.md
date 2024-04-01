@@ -8,19 +8,20 @@
 
 
  # Current State
-  - Base Formik form submits to console.
-  - Base format for UI setup with basic reactive styling.
-  - Write logic to transform dimsform values to fractions and do necessary calcs.
-    - Write logic to handle 2x4s form
-    - Finish adding addtional 2x4s to display / board ft calc
+  - Calcs all basic crate things.
+  - Calc new crate for each base submission.
+  - Can add additional 2x4s with one form submission.
+  - Reset via refresh
+  - CANNOT
+    - clear forms on it's own
+    - add additional 2x4s to a crate more than once. Additional submits will not update board ft.
 
  # New Goals
   - Refactor app to be cleaner
-    - main page - dims page and display
-    - second page - add 2x4s page with new board feet
+    - To be done at a later date
   - Perform Object-oriented programing
-    - a crate is an object - DONE - Need to restructure app to account for Crate object
-    - clear crate when reseting app    
+    - a crate is an object - DONE 
+    - Need to restructure app to account for Crate object - DONE  
 
 # Getting Started with Create React App
 

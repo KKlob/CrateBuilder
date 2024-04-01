@@ -6,19 +6,18 @@ export default class Crate {
     width = "";
     height = "";
     addFeet = false;
-    addTwoBys = [];
     feet = {};
     base = {};
     fb = {};
     sides = {};
     top = {};
+    bf = "";
 
-    constructor(length, width, height, addFeet = false, addTwoBys = []) {
+    constructor(length, width, height, addFeet = false) {
         this.length = this.dimsToFraction(length);
         this.width = this.dimsToFraction(width);
         this.height = this.dimsToFraction(height);
         this.addFeet = addFeet
-        this.addTwoBys = addTwoBys;
         this.calcCrate();
     }
 
@@ -29,7 +28,6 @@ export default class Crate {
             width: this.width,
             height: this.height,
             addFeet: this.addFeet,
-            addTwoBys: this.addTwoBys,
             feet: this.feet,
             base: this.base,
             fb: this.fb,
@@ -80,6 +78,25 @@ export default class Crate {
         this.top.length = this.length.add("1 1/4");
         this.top.width = this.feet.length;
         this.top.qty = 1
+
+        // calculate board feet
+        this.bf = this.feet.length.mul(this.feet.qty).mul(2).mul(4).div(144);
+    }
+
+    addBoardFeet(twoBys) {
+        // adds additional board feet when necessary
+        let totalLength = new Fraction();
+        twoBys.forEach(row => {
+            // sanitize + fractionize length
+            let len = this.dimsToFraction(row.length);
+
+            // multiply by qty and add to totalLength
+            totalLength = totalLength.add(len.mul(Number(row.qty)))
+        });
+
+        // calculate board feet and add to existing
+        let bf = totalLength.mul(2).mul(4).div(144);
+        return (bf.add(this.bf));
     }
 
 }

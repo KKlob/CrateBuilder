@@ -1,61 +1,40 @@
 import './App.css';
 import { Grid, Container } from '@mui/material';
 import DimsForm from './components/dims_form';
-import TwoByFoursForm from './components/two_by_fours_form';
-import { useState } from 'react';
 import CrateOutput from './components/crate_output';
-import Crate from './objects/crate';
+import { useState } from 'react';
+import TwoByFoursForm from './components/two_by_fours_form';
 
 function App() {
 
-  let test = new Crate("30.1/4", "25.1/8", "15.3/16",);
-  console.log(test.getInfo);
-
-  const [dims, setDims] = useState({
-    length: "",
-    width: "",
-    height: "",
-    addFeet: false
-  });
-
-  const [twoBys, setTwoBys] = useState({
-    twoBy1: { qty: "", length: "" },
-    twoBy2: { qty: "", length: "" },
-    twoBy3: { qty: "", length: "" },
-    twoBy4: { qty: "", length: "" },
-    twoBy5: { qty: "", length: "" }
-  });
-
-  function handleReset() {
-    setDims({
-      length: "",
-      width: "",
-      height: "",
-      addFeet: false
-    });
-    setTwoBys({
-      twoBy1: { qty: "", length: "" },
-      twoBy2: { qty: "", length: "" },
-      twoBy3: { qty: "", length: "" },
-      twoBy4: { qty: "", length: "" },
-      twoBy5: { qty: "", length: "" }
-    });
-  }
+  const [crate, setCrate] = useState(null);
 
   return (
     <div className="App">
       <Container>
-        This is the Crate Builder!
+        CrateBuilder v1
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <DimsForm dims={dims} setDims={setDims} handleReset={handleReset} />
+          <Grid item xs={23}>
+            To input a measurement use the following format:
           </Grid>
           <Grid item xs={12}>
-            <CrateOutput dims={dims} twoBys={twoBys} />
+            (whole number).(numerator)/(denominator)
           </Grid>
           <Grid item xs={12}>
-            <TwoByFoursForm twoBys={twoBys} setTwoBys={setTwoBys} />
+            EX: 34 1/4 inches becomes 34.1/4 | 15 3/16 inches becomes 15.3/16
           </Grid>
+          <Grid item xs={12}>
+            For whole numbers just input the number EX: 35 inches becomes 35
+          </Grid>
+          <Grid item xs={12}>
+            <DimsForm setCrate={setCrate} />
+          </Grid>
+          {crate ? <Grid item xs={12}>
+            <CrateOutput crate={crate} />
+          </Grid> : null}
+          {crate ? <Grid item xs={12}>
+            <TwoByFoursForm crate={crate} setCrate={setCrate} />
+          </Grid> : null}
         </Grid>
       </Container>
     </div>
