@@ -14,6 +14,14 @@
     - Need to add logic for slim crates that need only 2 feet nudged towards center + no additional 3" on side heights
     - Refresh page to reset form easy
 
+ # New Goals
+  - Refactor app to be cleaner
+    - main page - dims page and display
+    - second page - add 2x4s page with new board feet
+  - Perform Object-oriented programing
+    - a crate is an object
+    - clear crate when reseting app    
+
 
 
 # Getting Started with Create React App
